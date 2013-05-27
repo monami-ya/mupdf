@@ -70,9 +70,15 @@ public class ReaderView extends AdapterView<Adapter>
 
 	public ReaderView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		mGestureDetector = new GestureDetector(this);
-		mScaleGestureDetector = new ScaleGestureDetector(context, this);
-		mScroller        = new Scroller(context);
+		if (isInEditMode()) {
+			mGestureDetector = null;
+			mScaleGestureDetector = null;
+			mScroller = null;
+		} else {
+			mGestureDetector = new GestureDetector(this);
+			mScaleGestureDetector = new ScaleGestureDetector(context, this);
+			mScroller        = new Scroller(context);
+		}
 	}
 
 	public ReaderView(Context context, AttributeSet attrs, int defStyle) {
@@ -524,6 +530,7 @@ public class ReaderView extends AdapterView<Adapter>
 	protected void onLayout(boolean changed, int left, int top, int right,
 			int bottom) {
 		super.onLayout(changed, left, top, right, bottom);
+		if (isInEditMode()) return;
 
 		View cv = mChildViews.get(mCurrent);
 		Point cvOffset;

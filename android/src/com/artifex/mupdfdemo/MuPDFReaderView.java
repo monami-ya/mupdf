@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -28,6 +29,11 @@ public class MuPDFReaderView extends ReaderView {
 
 	public void setMode(Mode m) {
 		mMode = m;
+	}
+
+	public MuPDFReaderView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		mContext = context;
 	}
 
 	public MuPDFReaderView(Activity act) {
